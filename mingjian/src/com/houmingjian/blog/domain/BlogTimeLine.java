@@ -9,6 +9,8 @@ public class BlogTimeLine {
 
     private Integer year;
 
+    private Integer color;
+
     private String content;
 
     public Integer getId() {
@@ -35,6 +37,14 @@ public class BlogTimeLine {
         this.year = year;
     }
 
+    public Integer getColor() {
+        return color;
+    }
+
+    public void setColor(Integer color) {
+        this.color = color;
+    }
+
     public String getContent() {
         return content;
     }
@@ -42,11 +52,4 @@ public class BlogTimeLine {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
-
-	@Override
-	public String toString() {
-		return "BlogTimeLine [id=" + id + ", date=" + date + ", year=" + year
-				+ ", content=" + content + "]";
-	}
-    
 }

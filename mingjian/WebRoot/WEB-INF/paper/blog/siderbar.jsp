@@ -36,6 +36,7 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-12">
+						<p>博客最近更新目标：时间轴</p>
 						<p>建站至今已${builtDay }日</p>
 					</div>
 					<hr>

@@ -10,6 +10,7 @@
 	       <div class="collapse navbar-collapse">
 	           <ul class="nav navbar-nav">
 	               <li><a href="<c:url value='/home'/>">首页</a> </li>
+	               <li><a href="<c:url value='/timeline'/>">时间轴</a> </li>
 	           </ul>
 	           
 	           <ul class="nav navbar-right navbar-nav">

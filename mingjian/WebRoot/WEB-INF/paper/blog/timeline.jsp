@@ -5,7 +5,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    <title>个人开发时间轴</title>
+    <title>最近开发时间轴</title>
    	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta charset="utf-8">
 	<meta name="generator" content="Bootply" />
@@ -23,14 +23,28 @@
   			<div class="row">
   				<div class="col-md-8">
 	  				<div class="panel panel-default">
-					  <div class="panel-heading">个人开发时间戳</div>
+					  <div class="panel-heading">最近开发轴</div>
 					  <div class="panel-body">
 					  <c:forEach items="${ctimelines }" var="clines">
 		  				<article>
 							<h3>${clines.year }</h3>
 							<c:forEach items="${clines.blogTimeLineList}" var="lines">
 								<section>
-									<span class="point-time point-yellow"></span>
+									<c:if test="${lines.color == 1 }">
+										<span class="point-time point-yellow"></span>
+									</c:if>
+									<c:if test="${lines.color == 2 }">
+										<span class="point-time point-red"></span>
+									</c:if>
+									<c:if test="${lines.color == 3 }">
+										<span class="point-time point-blue"></span>
+									</c:if>	
+									<c:if test="${lines.color == 4 }">
+										<span class="point-time point-green"></span>
+									</c:if>
+									<c:if test="${lines.color == 5 }">
+										<span class="point-time point-purple"></span>
+									</c:if>		
 									<time datetime="2013-03">
 										<span><fmt:formatDate pattern="MM.dd" value="${lines.date}" /></span>
 									</time>
@@ -58,8 +72,9 @@
 		</div>
   	</div>
   	
-
-	
+  	<hr>
+	<!-- 页尾文件引入 -->
+	<jsp:include page="/frame/footer.jsp"></jsp:include>
  	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 	<script src="<c:url value='/js/frame/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/blog/common.js'/>"></script>

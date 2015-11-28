@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
@@ -25,6 +26,8 @@ import com.houmingjian.blog.mapper.custom.BlogTagMapperCustom;
 import com.houmingjian.blog.mapper.custom.BlogTimeLineMapperCustom;
 import com.houmingjian.blog.mapper.custom.BlogUserMapperCustom;
 import com.houmingjian.blog.service.BlogServiceInter;
+
+
 
 public class BlogServiceImpl implements BlogServiceInter {
 	@Resource
@@ -150,6 +153,8 @@ public class BlogServiceImpl implements BlogServiceInter {
 		Date date = new Date();
 		String year = new SimpleDateFormat("yyyy").format(date);
 		
+		Random random = new Random();
+		blogTimeLine.setColor(Math.abs((random.nextInt()%4))+1);
 		blogTimeLine.setDate(date);
 		blogTimeLine.setYear(Integer.valueOf(year));
 		blogTimeLineMapper.insertSelective(blogTimeLine);
@@ -176,11 +181,13 @@ public class BlogServiceImpl implements BlogServiceInter {
 				clines.add(blogTimeLineCustom);
 				blogTimeLineCustom = new BlogTimeLineCustom();
 				blogTimeLineCustom.setYear(lineyear);
+				blogTimeLineCustom.getBlogTimeLineList().add(timeline);
 				year = lineyear;
 			}
 		}
 		clines.add(blogTimeLineCustom);
 		
+		System.out.println("123");
 		return clines;
 	}
 	

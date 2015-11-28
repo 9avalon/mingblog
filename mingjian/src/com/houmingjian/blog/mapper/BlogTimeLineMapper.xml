@@ -3,14 +3,15 @@
 <mapper namespace="com.houmingjian.blog.mapper.BlogTimeLineMapper" >
   <resultMap id="BaseResultMap" type="com.houmingjian.blog.domain.BlogTimeLine" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="date" property="date" jdbcType="DATE" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="color" property="color" jdbcType="INTEGER" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.houmingjian.blog.domain.BlogTimeLine" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, date, year
+    id, date, year, color
   </sql>
   <sql id="Blob_Column_List" >
     content
@@ -29,9 +30,9 @@
   </delete>
   <insert id="insert" parameterType="com.houmingjian.blog.domain.BlogTimeLine" >
     insert into blog_timeline (id, date, year, 
-      content)
+      color, content)
     values (#{id,jdbcType=INTEGER}, #{date,jdbcType=TIMESTAMP}, #{year,jdbcType=INTEGER}, 
-      #{content,jdbcType=LONGVARCHAR})
+      #{color,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.houmingjian.blog.domain.BlogTimeLine" >
     insert into blog_timeline
@@ -44,6 +45,9 @@
       </if>
       <if test="year != null" >
         year,
+      </if>
+      <if test="color != null" >
+        color,
       </if>
       <if test="content != null" >
         content,
@@ -59,6 +63,9 @@
       <if test="year != null" >
         #{year,jdbcType=INTEGER},
       </if>
+      <if test="color != null" >
+        #{color,jdbcType=INTEGER},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
       </if>
@@ -68,10 +75,13 @@
     update blog_timeline
     <set >
       <if test="date != null" >
-        date = #{date,jdbcType=DATE},
+        date = #{date,jdbcType=TIMESTAMP},
       </if>
       <if test="year != null" >
         year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="color != null" >
+        color = #{color,jdbcType=INTEGER},
       </if>
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
@@ -81,15 +91,17 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.houmingjian.blog.domain.BlogTimeLine" >
     update blog_timeline
-    set date = #{date,jdbcType=DATE},
+    set date = #{date,jdbcType=TIMESTAMP},
       year = #{year,jdbcType=INTEGER},
+      color = #{color,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.houmingjian.blog.domain.BlogTimeLine" >
     update blog_timeline
-    set date = #{date,jdbcType=DATE},
-      year = #{year,jdbcType=INTEGER}
+    set date = #{date,jdbcType=TIMESTAMP},
+      year = #{year,jdbcType=INTEGER},
+      color = #{color,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

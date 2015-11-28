@@ -15,7 +15,7 @@
   		<h4>联系</h4>
   	</div>
   	<div class="col-md-3">
-  		<h4>FAQ</h4>
+  		<h4>GitHub</h4>
   	</div>
   </div>
     <div class="row">
@@ -29,7 +29,7 @@
 			<p>544461655@qq.com</p>
     	</div>
     	<div class="col-md-3">
-    		<p>FAQ</p>
+    		<p><a href="https://github.com/9avalon">我的github</a></p>
     	</div>
     </div>
     <hr>
