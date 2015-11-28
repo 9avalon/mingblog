@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.houmingjian.blog.domain.BlogPaper;
 import com.houmingjian.blog.domain.BlogTag;
+import com.houmingjian.blog.domain.BlogTimeLine;
 import com.houmingjian.blog.domain.BlogUser;
 import com.houmingjian.blog.domain.Page;
 import com.houmingjian.blog.domain.custom.BlogPaperCustom;
+import com.houmingjian.blog.domain.custom.BlogTimeLineCustom;
 import com.houmingjian.blog.domain.custom.PaperArchive;
 
 public interface BlogServiceInter {
@@ -32,4 +34,9 @@ public interface BlogServiceInter {
 	public List<PaperArchive> getBlogPaperDate();
 	
 	public Page getLimitBlogPaperByHistory(String queryDate,Page page);
+	
+	/*TimeLine*/
+	public void addTimeLine(BlogTimeLine blogTimeLine);
+	
+	public List<BlogTimeLineCustom> loadAllBlogTimeLine();
 }

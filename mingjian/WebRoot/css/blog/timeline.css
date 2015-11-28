@@ -65,13 +65,13 @@ body {
   background-color: #d32d93;
 }
 
-.content {
+.tl-content {
   margin: 10px auto;
 }
 .content article {
   position: relative;
 }
-.content article > h3 {
+.tl-content article > h3 {
   width: 15%;
   height: 20px;
   line-height: 20px;
@@ -80,11 +80,11 @@ body {
   color: #1d1d1d;
   padding: 10px 0 20px;
 }
-.content article section {
+.tl-content article section {
   padding: 0 0 17px;
   position: relative;
 }
-.content article section:before {
+.tl-content article section:before {
   content: "";
   width: 5px;
   top: 17px;
@@ -93,23 +93,23 @@ body {
   background: #e6e6e6;
   position: absolute;
 }
-.content article section:last-child:before {
+.tl-content article section:last-child:before {
   display: none;
 }
-.content article section time {
+.tl-content article section time {
   width: 15%;
   display: block;
   position: absolute;
 }
-.content article section time > span {
+.tl-content article section time > span {
   display: block;
   text-align: right;
 }
-.content article section aside {
+.tl-content article section aside {
   color: #3a3a38;
   margin-left: 25%;
   padding-bottom: 15px;
 }
-.content article section .brief {
+.tl-content article section .brief {
   color: #9f9f9f;
 }

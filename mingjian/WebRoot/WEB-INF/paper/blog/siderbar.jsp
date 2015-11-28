@@ -18,7 +18,7 @@
 					<hr>
 					<div class="row">
 						<div class="col-md-12">
-							<a href="#">添加标签</a><br>
+							<a href="javascript:void(0);" data-toggle="modal" data-target="#addTimeLine">添加时间轴</a><br>
 						</div>
 					</div>
 				</div>
@@ -36,7 +36,6 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-md-12">
-						<p>网站还在持续施工中.....如有bug请联系我</p>
 						<p>建站至今已${builtDay }日</p>
 					</div>
 					<hr>
@@ -83,4 +82,25 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="addTimeLine" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <form action="<c:url value='/timeline'/>" method="post">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">增加时间轴事件</h4>
+	      </div>
+	      
+	      <div class="modal-body">
+	        	<input class="form-control" name="content" placeholder="内容"/>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="submit" class="btn btn-primary">确定</button>
+	      </div>
+	    </div>
+	  </div>
+  </form>
 </div>
+

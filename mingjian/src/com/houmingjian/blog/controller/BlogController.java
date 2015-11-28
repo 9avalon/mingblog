@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RequestWrapper;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.houmingjian.blog.domain.BlogPaper;
 import com.houmingjian.blog.domain.BlogTag;
+import com.houmingjian.blog.domain.BlogTimeLine;
 import com.houmingjian.blog.domain.BlogUser;
 import com.houmingjian.blog.domain.Page;
 import com.houmingjian.blog.domain.custom.BlogPaperCustom;
@@ -29,7 +31,7 @@ import com.houmingjian.blog.service.BlogServiceInter;
 public class BlogController {
 	@Resource
 	BlogServiceInter blogServiceInter;
-
+	
 	/*主页*/
 	@RequestMapping(value="/home",method=RequestMethod.GET)
 	public String blog(Model model, @RequestParam(value="pageNo", defaultValue="1")int pageNo,
@@ -142,8 +144,16 @@ public class BlogController {
 	}
 	
 	/*----------------------时间轴---------------------------------*/
-	@RequestMapping(value="/timeline")
+	@RequestMapping(value="/timeline", method=RequestMethod.GET)
 	public String timeLine(Model model){
+		model.addAttribute("ctimelines", blogServiceInter.loadAllBlogTimeLine());
 		return "blog/timeline";
 	}
+	
+	@RequestMapping(value="/timeline", method=RequestMethod.POST)
+	public String addTimeLine(Model model, BlogTimeLine blogTimeLine){
+		blogServiceInter.addTimeLine(blogTimeLine);
+		return "redirect:/timeline";
+	}
+	
 }

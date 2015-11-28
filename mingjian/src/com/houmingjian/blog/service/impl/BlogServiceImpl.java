@@ -1,5 +1,6 @@
 package com.houmingjian.blog.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,15 +10,19 @@ import javax.annotation.Resource;
 
 import com.houmingjian.blog.domain.BlogPaper;
 import com.houmingjian.blog.domain.BlogTag;
+import com.houmingjian.blog.domain.BlogTimeLine;
 import com.houmingjian.blog.domain.BlogUser;
 import com.houmingjian.blog.domain.Page;
 import com.houmingjian.blog.domain.custom.BlogPaperCustom;
+import com.houmingjian.blog.domain.custom.BlogTimeLineCustom;
 import com.houmingjian.blog.domain.custom.PaperArchive;
 import com.houmingjian.blog.domain.query.BlogPaperQueryVo;
 import com.houmingjian.blog.mapper.BlogPaperMapper;
 import com.houmingjian.blog.mapper.BlogTagMapper;
+import com.houmingjian.blog.mapper.BlogTimeLineMapper;
 import com.houmingjian.blog.mapper.custom.BlogPaperMapperCustom;
 import com.houmingjian.blog.mapper.custom.BlogTagMapperCustom;
+import com.houmingjian.blog.mapper.custom.BlogTimeLineMapperCustom;
 import com.houmingjian.blog.mapper.custom.BlogUserMapperCustom;
 import com.houmingjian.blog.service.BlogServiceInter;
 
@@ -32,7 +37,10 @@ public class BlogServiceImpl implements BlogServiceInter {
 	BlogTagMapperCustom blogTagMapperCustom;
 	@Resource
 	BlogUserMapperCustom blogUserMapperCustom;
-	
+	@Resource
+	BlogTimeLineMapper blogTimeLineMapper;
+	@Resource
+	BlogTimeLineMapperCustom blogTimeLineMapperCustom;
 	/*添加blog*/
 	public void saveBlog(BlogPaper blogPaper) {
 		blogPaperMapper.insertSelective(blogPaper);
@@ -136,6 +144,44 @@ public class BlogServiceImpl implements BlogServiceInter {
 		vo.setDay(day);
 		page.setPageContent(blogPaperMapperCustom.getLimitBlogByHistory(vo));
 		return page;
+	}
+
+	public void addTimeLine(BlogTimeLine blogTimeLine) {
+		Date date = new Date();
+		String year = new SimpleDateFormat("yyyy").format(date);
+		
+		blogTimeLine.setDate(date);
+		blogTimeLine.setYear(Integer.valueOf(year));
+		blogTimeLineMapper.insertSelective(blogTimeLine);
+	}
+
+	public List<BlogTimeLineCustom> loadAllBlogTimeLine() {
+		List<BlogTimeLine> lines = blogTimeLineMapperCustom.loadAllTimeLine();
+		
+		List<BlogTimeLineCustom> clines = new ArrayList<BlogTimeLineCustom>();
+		
+		int year = 0;
+		
+		BlogTimeLineCustom blogTimeLineCustom = new BlogTimeLineCustom();
+		for (BlogTimeLine timeline: lines){
+			int lineyear = timeline.getYear();
+			// 第一次赋值
+			if (year == 0){
+				year = lineyear;
+				blogTimeLineCustom.setYear(lineyear);
+			}
+			if (lineyear == year){
+				blogTimeLineCustom.getBlogTimeLineList().add(timeline);
+			}else {
+				clines.add(blogTimeLineCustom);
+				blogTimeLineCustom = new BlogTimeLineCustom();
+				blogTimeLineCustom.setYear(lineyear);
+				year = lineyear;
+			}
+		}
+		clines.add(blogTimeLineCustom);
+		
+		return clines;
 	}
 	
 }

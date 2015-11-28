@@ -16,10 +16,9 @@
 <body>
 	<jsp:include page="/frame/header.jsp"></jsp:include>
     <!-- core content -->
-      
+    <div class="container container-fix">
       <div class="row">
         <div class="col-md-8">
-        
 		  <!-- 开始修改区域 -->
           <div id="content">
             <div class="panel panel-default">
@@ -119,15 +118,16 @@
         </div>
         
       </div>
+     </div>
     </div>
 
 	<hr>
-	
 	<!-- 页尾文件引入 -->
 	<jsp:include page="/frame/footer.jsp"></jsp:include>
 
     <!-- script references -->
 	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="<c:url value='/js/frame/bootstrap.min.js'/>"></script>
 	<script src="<c:url value='/js/blog/common.js'/>"></script>
 	<script>
 		$(function(){
